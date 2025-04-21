@@ -252,7 +252,7 @@ minimized.MouseButton1Click:Connect(function()
 			v.TextTransparency = 0
 			v.TextColor3 = Color3.new(1, 1, 1) -- Pure white text
 		elseif v:IsA("Frame") then
-			v.BackgroundTransparency = 0
+			v.BackgroundTransparency = 1
 			if v.Name ~= "statusDot" then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Or whatever your original dark color is
 			end
