@@ -285,4 +285,10 @@ minimized.MouseButton1Click:Connect(function()
 	end
 	main.BackgroundTransparency = 0
 	minimized.Visible = false
+
+		-- This is the part you were missing at the bottom of your original script:
+
+minimized.MouseButton1Click:Connect(function()
+	main.Visible = true
+	minimized.Visible = false
 end)
