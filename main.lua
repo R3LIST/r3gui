@@ -270,15 +270,16 @@ mini3.Text = "3"
 mini3.Font = Enum.Font.GothamBold
 mini3.TextSize = 20
 mini3.TextColor3 = Color3.fromRGB(255, 0, 0)
-mini3.TextXAlignment = Enum.TextXAlignment.Right
-mini3.Position = UDim2.new(0, 0, 0, 0)
+mini3.TextXAlignment = Enum.TextXAlignment.Left
+mini3.Position = UDim2.new(0, 16, 0, 0)
 
+-- When the minimized icon is clicked, restore the GUI
 minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
 	for _,v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
-		elseif v:IsA("Frame") then
+		elseif v:IsA("Frame") and v.BackgroundTransparency ~= 1 then
 			v.BackgroundTransparency = 0
 		end
 	end
