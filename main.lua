@@ -228,34 +228,37 @@ end)
 
 -- Reopen handler
 minimized.MouseButton1Click:Connect(function()
+	-- Ensure the main GUI is visible again
 	main.Visible = true
 	minimized.Visible = false
 
-	-- Restore specific elements manually for safety
+	-- Restore background color and transparency
 	main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	main.BackgroundTransparency = 0
 
+	-- Safely restore Sidebar
 	local sidebar = main:FindFirstChild("Sidebar")
 	if sidebar then
 		sidebar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		sidebar.BackgroundTransparency = 0
+
+		local avatarFrame = sidebar:FindFirstChild("AvatarFrame")
+		if avatarFrame then
+			avatarFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+			avatarFrame.BackgroundTransparency = 0
+		end
+
+		local divider = sidebar:FindFirstChild("Divider")
+		if divider then
+			divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			divider.BackgroundTransparency = 0
+		end
 	end
 
-	local avatarFrame = sidebar and sidebar:FindFirstChild("AvatarFrame")
-	if avatarFrame then
-		avatarFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-		avatarFrame.BackgroundTransparency = 0
-	end
-
-	local divider = sidebar and sidebar:FindFirstChild("Divider")
-	if divider then
-		divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		divider.BackgroundTransparency = 0
-	end
-
+	-- Restore panel button visuals
 	local panel = main:FindFirstChild("Panel")
 	if panel then
-		for _, btn in pairs(panel:GetDescendants()) do
+		for _, btn in ipairs(panel:GetDescendants()) do
 			if btn:IsA("TextButton") then
 				btn.BackgroundColor3 = Color3.fromRGB(40, 35, 35)
 				btn.BackgroundTransparency = 0
@@ -265,11 +268,12 @@ minimized.MouseButton1Click:Connect(function()
 		end
 	end
 
-	-- Reset text transparency for all visible labels/buttons
-	for _, v in pairs(main:GetDescendants()) do
+	-- Restore all visible text
+	for _, v in ipairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
 			v.TextColor3 = Color3.fromRGB(255, 255, 255)
 		end
 	end
 end)
+
