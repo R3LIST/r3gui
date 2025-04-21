@@ -1,5 +1,4 @@
--- R3gui Final Fixed Script with Minimized Toggle and 3rd Column
-
+-- R3gui Final Script (No Gray Box, Clean Transitions, Working Minimized Toggle + 3rd Column)
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
@@ -16,15 +15,15 @@ gui.Name = "R3gui"
 gui.IgnoreGuiInset = true
 gui.ResetOnSpawn = false
 
--- Splash
+-- Splash Screen
 local splash = Instance.new("Frame", gui)
-splash.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+splash.BackgroundColor3 = Color3.new(0, 0, 0)
 splash.Size = UDim2.new(1, 0, 1, 0)
 
 local splashLogo = Instance.new("TextLabel", splash)
-splashLogo.BackgroundTransparency = 1
 splashLogo.Size = UDim2.new(0, 160, 0, 60)
 splashLogo.Position = UDim2.new(0.5, -80, 0.5, -30)
+splashLogo.BackgroundTransparency = 1
 splashLogo.Text = "R"
 splashLogo.Font = Enum.Font.GothamBold
 splashLogo.TextSize = 36
@@ -32,9 +31,9 @@ splashLogo.TextColor3 = Color3.new(1, 1, 1)
 splashLogo.TextXAlignment = Enum.TextXAlignment.Left
 
 local splashRed3 = Instance.new("TextLabel", splash)
-splashRed3.BackgroundTransparency = 1
 splashRed3.Size = UDim2.new(0, 160, 0, 60)
 splashRed3.Position = UDim2.new(0.5, -60, 0.5, -30)
+splashRed3.BackgroundTransparency = 1
 splashRed3.Text = "3"
 splashRed3.Font = Enum.Font.GothamBold
 splashRed3.TextSize = 36
@@ -55,12 +54,14 @@ main.Position = UDim2.new(0.5, -320, 0.5, -150)
 main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 main.Active = true
 main.Draggable = true
+main.BackgroundTransparency = 0
 Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
 
 -- Sidebar
 local sidebar = Instance.new("Frame", main)
 sidebar.Size = UDim2.new(0, 140, 1, 0)
 sidebar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+sidebar.BackgroundTransparency = 0
 Instance.new("UICorner", sidebar).CornerRadius = UDim.new(0, 10)
 
 -- Title
@@ -92,9 +93,8 @@ greeting.Font = Enum.Font.Gotham
 greeting.TextSize = 14
 greeting.TextColor3 = Color3.new(1, 1, 1)
 greeting.BackgroundTransparency = 1
-greeting.TextWrapped = true
 
--- Avatar
+-- Avatar Frame
 local avatarFrame = Instance.new("Frame", sidebar)
 avatarFrame.Size = UDim2.new(0, 60, 0, 60)
 avatarFrame.Position = UDim2.new(0.5, -30, 1, -70)
@@ -107,7 +107,7 @@ avatar.Size = UDim2.new(1, 0, 1, 0)
 avatar.Image = thumb
 avatar.BackgroundTransparency = 1
 
--- Button Panel
+-- Panel + Grid
 local panel = Instance.new("Frame", main)
 panel.Size = UDim2.new(0, 480, 0, 240)
 panel.Position = UDim2.new(0, 150, 0, 30)
@@ -118,7 +118,7 @@ layout.CellSize = UDim2.new(0, 140, 0, 45)
 layout.CellPadding = UDim2.new(0, 10, 0, 10)
 layout.FillDirectionMaxCells = 3
 
-local dot
+-- Buttons
 local buttonList = {
 	["Fly"] = "https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt",
 	["Touch Fling"] = "https://pastebin.com/raw/LgZwZ7ZB",
@@ -135,8 +135,8 @@ local buttonList = {
 	["annabypasser"] = "https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua"
 }
 
-local Noclip = nil
-local Clip = true
+local dot
+local Noclip, Clip = nil, true
 
 local function noclip()
 	Clip = false
@@ -198,7 +198,7 @@ for name, link in pairs(buttonList) do
 	end)
 end
 
--- Minimized Button
+-- Minimized Icon
 local minimized = Instance.new("TextButton", gui)
 minimized.Size = UDim2.new(0, 60, 0, 40)
 minimized.Position = UDim2.new(0, 10, 1, -60)
@@ -212,54 +212,14 @@ minimized.Visible = false
 minimized.Draggable = true
 Instance.new("UICorner", minimized).CornerRadius = UDim.new(0, 8)
 
--- Close handler
+-- Minimize Main
 closeBtn.MouseButton1Click:Connect(function()
-	for _,v in pairs(main:GetDescendants()) do
-		if v:IsA("TextLabel") or v:IsA("TextButton") then
-			TweenService:Create(v, TweenInfo.new(0.4), {TextTransparency = 1}):Play()
-		elseif v:IsA("Frame") then
-			TweenService:Create(v, TweenInfo.new(0.4), {BackgroundTransparency = 1}):Play()
-		end
-	end
-	wait(0.4)
 	main.Visible = false
 	minimized.Visible = true
 end)
 
---reopen handler
-
--- Close handler
-closeBtn.MouseButton1Click:Connect(function()
-	for _,v in pairs(main:GetDescendants()) do
-		if v:IsA("TextLabel") or v:IsA("TextButton") then
-			TweenService:Create(v, TweenInfo.new(0.4), {TextTransparency = 1}):Play()
-		elseif v:IsA("Frame") then
-			TweenService:Create(v, TweenInfo.new(0.4), {BackgroundTransparency = 1}):Play()
-		end
-	end
-	wait(0.4)
-	main.Visible = false
-	minimized.Visible = true
-end)
-
--- Reopen handler
+-- Restore GUI
 minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
 	minimized.Visible = false
-
-	for _, v in pairs(main:GetDescendants()) do
-		if v:IsA("TextLabel") or v:IsA("TextButton") then
-			v.TextTransparency = 0
-			v.TextColor3 = Color3.new(1, 1, 1) -- restore pure white text
-			v.BackgroundTransparency = 0
-			v.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- original button background
-		elseif v:IsA("Frame") then
-			v.BackgroundTransparency = 0
-			if v.Name ~= "statusDot" then
-				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- original frame background
-			end
-		elseif v:IsA("ImageLabel") then
-			v.ImageTransparency = 0
-		end
-	end
 end)
