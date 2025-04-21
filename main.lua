@@ -12,7 +12,15 @@ if PlayerGui:FindFirstChild("R3gui") then
 	PlayerGui.R3gui:Destroy()
 end
 
+-- Create GUI first
 local gui = Instance.new("ScreenGui", PlayerGui)
+gui.Name = "R3gui"
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+
+-- Splash screen
+local splash = Instance.new("Frame", gui)
+
 
 -- Splash screen
 local splash = Instance.new("Frame", gui)
@@ -46,10 +54,7 @@ TweenService:Create(splashRed3, TweenInfo.new(1), {TextTransparency = 1}):Play()
 task.wait(1.1)
 splash:Destroy()
 
--- Main GUI
-gui.Name = "R3gui"
-gui.IgnoreGuiInset = true
-gui.ResetOnSpawn = false
+
 
 local main = Instance.new("Frame", gui)
 main.Size = UDim2.new(0, 640, 0, 300)
