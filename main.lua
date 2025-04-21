@@ -231,31 +231,45 @@ minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
 	minimized.Visible = false
 
--- Reopen handler
-minimized.MouseButton1Click:Connect(function()
-	main.Visible = true
-	minimized.Visible = false
+	-- Restore specific elements manually for safety
+	main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	main.BackgroundTransparency = 0
 
-	-- Restore full visibility and original colors
+	local sidebar = main:FindFirstChild("Sidebar")
+	if sidebar then
+		sidebar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		sidebar.BackgroundTransparency = 0
+	end
+
+	local avatarFrame = sidebar and sidebar:FindFirstChild("AvatarFrame")
+	if avatarFrame then
+		avatarFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		avatarFrame.BackgroundTransparency = 0
+	end
+
+	local divider = sidebar and sidebar:FindFirstChild("Divider")
+	if divider then
+		divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		divider.BackgroundTransparency = 0
+	end
+
+	local panel = main:FindFirstChild("Panel")
+	if panel then
+		for _, btn in pairs(panel:GetDescendants()) do
+			if btn:IsA("TextButton") then
+				btn.BackgroundColor3 = Color3.fromRGB(40, 35, 35)
+				btn.BackgroundTransparency = 0
+				btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+				btn.TextTransparency = 0
+			end
+		end
+	end
+
+	-- Reset text transparency for all visible labels/buttons
 	for _, v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
 			v.TextColor3 = Color3.fromRGB(255, 255, 255)
-		elseif v:IsA("Frame") then
-			v.BackgroundTransparency = 0
-
-			-- Restore specific background colors for key sections
-			if v.Name == "Main" or v == main then
-				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-			elseif v.Name == "Sidebar" then
-				v.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			elseif v.Name == "AvatarFrame" then
-				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-			elseif v.Name == "Divider" then
-				v.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			elseif v.Parent and v.Parent.Name == "Panel" and v:IsA("TextButton") then
-				v.BackgroundColor3 = Color3.fromRGB(40, 35, 35)
-			end
 		end
 	end
 end)
