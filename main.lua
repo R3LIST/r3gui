@@ -229,12 +229,28 @@ end)
 -- Reopen handler
 minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
-	for _,v in pairs(main:GetDescendants()) do
+	minimized.Visible = false
+
+	-- Restore full visibility and original colors
+	for _, v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
+			v.TextColor3 = Color3.fromRGB(255, 255, 255)
 		elseif v:IsA("Frame") then
 			v.BackgroundTransparency = 0
+
+			-- Restore specific background colors for key sections
+			if v.Name == "Main" or v == main then
+				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+			elseif v.Name == "Sidebar" then
+				v.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			elseif v.Name == "AvatarFrame" then
+				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+			elseif v.Name == "Divider" then
+				v.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			elseif v.Parent and v.Parent.Name == "Panel" and v:IsA("TextButton") then
+				v.BackgroundColor3 = Color3.fromRGB(40, 35, 35)
+			end
 		end
 	end
-	minimized.Visible = false
 end)
