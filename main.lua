@@ -237,15 +237,42 @@ closeBtn.MouseButton1Click:Connect(function()
 	mini.Visible = true
 end)
 
-mini.MouseButton1Click:Connect(function()
-	main.Visible = true
-	mini.Visible = false
-	for _,v in pairs(main:GetDescendants()) do
-		if v:IsA("TextLabel") or v:IsA("TextButton") then
-			v.TextTransparency = 0
-		elseif v:IsA("Frame") then
-			v.BackgroundTransparency = 0
-		end
-	end
-	main.BackgroundTransparency = 0
+local minimized = Instance.new("TextButton", gui)
+minimized.Size = UDim2.new(0, 60, 0, 40)
+minimized.Position = UDim2.new(0, 10, 1, -60)
+minimized.Text = ""
+minimized.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+minimized.Visible = false
+minimized.Draggable = true
+minimized.Active = true
+Instance.new("UICorner", minimized).CornerRadius = UDim.new(0, 10)
+
+local miniR = Instance.new("TextLabel", minimized)
+miniR.BackgroundTransparency = 1
+miniR.Size = UDim2.new(1, 0, 1, 0)
+miniR.Text = "r"
+miniR.Font = Enum.Font.GothamBold
+miniR.TextSize = 20
+miniR.TextXAlignment = Enum.TextXAlignment.Left
+miniR.Position = UDim2.new(0, 6, 0, 0)
+miniR.TextColor3 = Color3.new(1, 1, 1)
+
+local mini3 = Instance.new("TextLabel", minimized)
+mini3.BackgroundTransparency = 1
+mini3.Size = UDim2.new(1, 0, 1, 0)
+mini3.Text = "3"
+mini3.Font = Enum.Font.GothamBold
+mini3.TextSize = 20
+mini3.TextXAlignment = Enum.TextXAlignment.Left
+mini3.Position = UDim2.new(0, 20, 0, 0)
+mini3.TextColor3 = Color3.fromRGB(255, 0, 0)
+
+close.MouseButton1Click:Connect(function()
+    main.Visible = false
+    minimized.Visible = true
+end)
+
+minimized.MouseButton1Click:Connect(function()
+    main.Visible = true
+    minimized.Visible = false
 end)
