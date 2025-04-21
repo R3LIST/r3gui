@@ -231,6 +231,11 @@ minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
 	minimized.Visible = false
 
+-- Reopen handler
+minimized.MouseButton1Click:Connect(function()
+	main.Visible = true
+	minimized.Visible = false
+
 	-- Restore full visibility and original colors
 	for _, v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
