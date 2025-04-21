@@ -250,12 +250,16 @@ minimized.MouseButton1Click:Connect(function()
 	for _, v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
-			v.TextColor3 = Color3.new(1, 1, 1) -- Pure white text
+			v.TextColor3 = Color3.new(1, 1, 1) -- restore pure white text
+			v.BackgroundTransparency = 0
+			v.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- original button background
 		elseif v:IsA("Frame") then
-			v.BackgroundTransparency = 1
+			v.BackgroundTransparency = 0
 			if v.Name ~= "statusDot" then
-				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- Or whatever your original dark color is
+				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25) -- original frame background
 			end
+		elseif v:IsA("ImageLabel") then
+			v.ImageTransparency = 0
 		end
 	end
 end)
