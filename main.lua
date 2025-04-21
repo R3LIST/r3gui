@@ -274,12 +274,17 @@ mini3.TextXAlignment = Enum.TextXAlignment.Left
 mini3.Position = UDim2.new(0, 20, 0, 0)
 mini3.TextColor3 = Color3.fromRGB(255, 0, 0)
 
-close.MouseButton1Click:Connect(function()
-    main.Visible = false
-    minimized.Visible = true
+mini.MouseButton1Click:Connect(function()
+	main.Visible = true
+	for _,v in pairs(main:GetDescendants()) do
+		if v:IsA("TextLabel") or v:IsA("TextButton") then
+			v.TextTransparency = 0
+		elseif v:IsA("Frame") then
+			v.BackgroundTransparency = 0
+		end
+	end
+	mini.Visible = false
 end)
 
-minimized.MouseButton1Click:Connect(function()
-    main.Visible = true
-    minimized.Visible = false
-end)
+-- Optional: remove 'minimized' if unused
+minimized:Destroy()
