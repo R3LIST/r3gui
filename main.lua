@@ -237,6 +237,10 @@ closeBtn.MouseButton1Click:Connect(function()
 	mini.Visible = true
 end)
 
+    button.MouseButton1Click:Connect(action)
+end
+
+
 local minimized = Instance.new("TextButton", gui)
 minimized.Size = UDim2.new(0, 60, 0, 40)
 minimized.Position = UDim2.new(0, 10, 1, -60)
