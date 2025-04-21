@@ -228,6 +228,21 @@ end)
 
 --reopen handler
 
+-- Close handler
+closeBtn.MouseButton1Click:Connect(function()
+	for _,v in pairs(main:GetDescendants()) do
+		if v:IsA("TextLabel") or v:IsA("TextButton") then
+			TweenService:Create(v, TweenInfo.new(0.4), {TextTransparency = 1}):Play()
+		elseif v:IsA("Frame") then
+			TweenService:Create(v, TweenInfo.new(0.4), {BackgroundTransparency = 1}):Play()
+		end
+	end
+	wait(0.4)
+	main.Visible = false
+	minimized.Visible = true
+end)
+
+-- Reopen handler
 minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
 	minimized.Visible = false
@@ -235,33 +250,8 @@ minimized.MouseButton1Click:Connect(function()
 	for _, v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
-			-- Restore white text by default
-			v.TextColor3 = Color3.new(1, 1, 1)
-
-			-- Special case: make '3' in 'R3gui' red again
-			if v.Name == "title" then
-				local richText = v:FindFirstChildOfClass("TextLabel")
-				if richText then
-					richText.TextColor3 = Color3.new(1, 0, 0)
-				end
-			end
 		elseif v:IsA("Frame") then
 			v.BackgroundTransparency = 0
-
-			-- Restore specific background colors by name
-			if v.Name == "main" then
-				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-			elseif v.Name == "sidebar" then
-				v.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			elseif v.Name == "avatarFrame" then
-				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-			elseif v.Name == "dot" then
-				v.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-			elseif v.Name == "buttonBackground" or v.Name == "button" then
-				v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-			end
-		elseif v:IsA("ImageLabel") and v.Name == "avatar" then
-			v.ImageTransparency = 0
 		end
 	end
 end)
