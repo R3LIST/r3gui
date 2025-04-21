@@ -1,4 +1,3 @@
-
 -- R3gui Full Script with 3rd Column & annabypasser Button
 
 local Players = game:GetService("Players")
@@ -270,18 +269,12 @@ mini3.Size = UDim2.new(1, 0, 1, 0)
 mini3.Text = "3"
 mini3.Font = Enum.Font.GothamBold
 mini3.TextSize = 20
-mini3.TextXAlignment = Enum.TextXAlignment.Left
-mini3.Position = UDim2.new(0, 20, 0, 0)
 mini3.TextColor3 = Color3.fromRGB(255, 0, 0)
-
-
+mini3.TextXAlignment = Enum.TextXAlignment.Right
+mini3.Position = UDim2.new(0, 0, 0, 0)
 
 minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
-	mini.Visible = false
-
-	-- Reset all transparencies to default
-	main.BackgroundTransparency = 0
 	for _,v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
@@ -289,4 +282,6 @@ minimized.MouseButton1Click:Connect(function()
 			v.BackgroundTransparency = 0
 		end
 	end
+	main.BackgroundTransparency = 0
+	minimized.Visible = false
 end)
