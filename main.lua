@@ -232,17 +232,23 @@ minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
 	minimized.Visible = false
 
-	-- Restore full visibility and original colors
 	for _, v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
-			-- Restore original TextColor3 if it was changed
+			-- Restore white text by default
+			v.TextColor3 = Color3.new(1, 1, 1)
+
+			-- Special case: make '3' in 'R3gui' red again
 			if v.Name == "title" then
-				v.TextColor3 = Color3.new(1, 1, 1)
+				local richText = v:FindFirstChildOfClass("TextLabel")
+				if richText then
+					richText.TextColor3 = Color3.new(1, 0, 0)
+				end
 			end
 		elseif v:IsA("Frame") then
 			v.BackgroundTransparency = 0
-			-- Restore specific background colors for key sections
+
+			-- Restore specific background colors by name
 			if v.Name == "main" then
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 			elseif v.Name == "sidebar" then
@@ -251,7 +257,11 @@ minimized.MouseButton1Click:Connect(function()
 				v.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 			elseif v.Name == "dot" then
 				v.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+			elseif v.Name == "buttonBackground" or v.Name == "button" then
+				v.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 			end
+		elseif v:IsA("ImageLabel") and v.Name == "avatar" then
+			v.ImageTransparency = 0
 		end
 	end
 end)
