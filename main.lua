@@ -278,6 +278,10 @@ mini3.TextColor3 = Color3.fromRGB(255, 0, 0)
 
 minimized.MouseButton1Click:Connect(function()
 	main.Visible = true
+	mini.Visible = false
+
+	-- Reset all transparencies to default
+	main.BackgroundTransparency = 0
 	for _,v in pairs(main:GetDescendants()) do
 		if v:IsA("TextLabel") or v:IsA("TextButton") then
 			v.TextTransparency = 0
@@ -285,5 +289,4 @@ minimized.MouseButton1Click:Connect(function()
 			v.BackgroundTransparency = 0
 		end
 	end
-	minimized.Visible = false
 end)
