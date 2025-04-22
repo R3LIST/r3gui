@@ -132,7 +132,8 @@ local buttonList = {
 	["Absense"] = "https://raw.githubusercontent.com/vnausea/absence-mini/refs/heads/main/absencemini.lua",
 	["Bloxburg"] = "https://luxhub.cc/script.lua",
 	["Eclipse Hub"] = "eclipse",
-	["annabypasser"] = "https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua"
+	["Annabypasser"] = "https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua",
+	["Ring Parts"] = "https://pastebin.com/bp7r7GLM"
 }
 
 local dot
