@@ -133,7 +133,7 @@ local buttonList = {
 	["Bloxburg"] = "https://luxhub.cc/script.lua",
 	["Eclipse Hub"] = "eclipse",
 	["Annabypasser"] = "https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua",
-	["Ring Parts"] = "loadstring(game:HttpGet("https://rscripts.net/raw/super-ring-parts-v4-by-lukas_1741980981842_td0ummjymf.txt",true))()",
+	["Ring Parts"] = "",
 	["Adopt Me"] = "loadstring(game:HttpGet('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/ReQiuYTPLHub.lua'))()",
 }
 
