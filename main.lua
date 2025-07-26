@@ -134,7 +134,7 @@ local buttonList = {
 	["Eclipse Hub"] = "eclipse",
 	["Annabypasser"] = "https://raw.githubusercontent.com/AnnaRoblox/AnnaBypasser/refs/heads/main/AnnaBypasser.lua",
 	["Ring Parts"] = "loadstring(game:HttpGet('https://raw.githubusercontent.com/Lukashub-coder/super-ring/refs/heads/main/Super%20ring!!'))()",
-	["Adopt Me"] = "loadstring(game:HttpGet('https://gitfront.io/r/ReQiuYTPL/wFUydaK74uGx/hub/raw/ReQiuYTPLHub.lua'))()",
+        ["SystemBroken"] = "https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script",
 }
 
 local dot
